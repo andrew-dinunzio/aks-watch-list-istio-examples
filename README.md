@@ -4,6 +4,8 @@ This shows the problem that AKS has with watching resources.
 
 It is expected that these scripts will run from Git Bash on Windows, and Minikube will use hyperv as the vm-driver.
 
+Also, I created a symlink to az.cmd called just "az", so I can run the CLI commands from Git Bash.
+
 # Setting up Minikube
 
 **NOTE**: This is currently a WIP, as I have not made the changes necessary to the minikube scripts. You can still set up on Minikube by creating a minikube cluster (similarly to how it's done in the script now), make sure that that is your current kubectl context, then run the `./aks-setup.sh` script, selecting "n" when prompted to create the AKS cluster. Also, you must change your `hyperv-virtual-switch` to whatever yours is called. This is assuming you're testing from Windows with hyperv. 
