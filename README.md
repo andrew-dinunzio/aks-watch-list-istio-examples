@@ -1,9 +1,6 @@
 # Introduction
 
 This shows the problem that AKS has with watching resources.
-The master branch is just plain AKS, but there is also an `istio` branch that shows problems with watching when using Istio (occurs in AKS but not in other cloud providers like GKE).
-
-The instructions for both branches should be the same.
 
 # Setting up Minikube
 
