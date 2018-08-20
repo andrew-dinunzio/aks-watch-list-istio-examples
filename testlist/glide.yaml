@@ -1,4 +1,4 @@
-package: andrewdinunzio.me/watch-examples/testlist
+package: github.com/andrew-dinunzio/aks-watch-list-istio-examples/testlist
 import:
 - package: github.com/gorilla/mux
   version: ~1.6.2

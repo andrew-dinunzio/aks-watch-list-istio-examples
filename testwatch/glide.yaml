@@ -1,4 +1,4 @@
-package: github.com/andrew-dinunzio/watch-examples/testwatch
+package: github.com/andrew-dinunzio/aks-watch-list-istio-examples/testwatch
 import:
 - package: k8s.io/api
   version: 73d903622b7391f3312dcbac6483fed484e185f8
