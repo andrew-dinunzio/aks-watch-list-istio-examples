@@ -2,13 +2,17 @@
 
 This shows the problem that AKS has with watching resources.
 
+It is expected that these scripts will run from Git Bash on Windows, and Minikube will use hyperv as the vm-driver.
+
 # Setting up Minikube
 
-**NOTE**: This is currently a WIP, as I have not made the changes necessary to the minikube scripts. You can still set up on Minikube by creating a minikube cluster (similarly to how it's done in the script now), make sure that that is your current kubectl context, then run the `./aks-setup.sh` script, selecting "n" when prompted to create the AKS cluster.
+**NOTE**: This is currently a WIP, as I have not made the changes necessary to the minikube scripts. You can still set up on Minikube by creating a minikube cluster (similarly to how it's done in the script now), make sure that that is your current kubectl context, then run the `./aks-setup.sh` script, selecting "n" when prompted to create the AKS cluster. Also, you must change your `hyperv-virtual-switch` to whatever yours is called. This is assuming you're testing from Windows with hyperv. 
 
 **OLD**: `cd` into `./minikube`, and run `./mini-setup.sh`. Then deploy one of the apps (either via `./mini-deploy-watch-app.sh` or `./mini-deploy-list-app.sh`). Then run `./mini-test.sh`. It will output either `PASS`, `FAIL` or `SKIP`.
 
 # Setting up AKS
+
+**NOTE**: You should modify `vars.sh` to name the ACR something different - it has to be unique or the command will fail.
 
 `cd` into `./aks`, and run `source ./vars.sh`, then `./aks-setup.sh`. Follow the prompts to create an AKS cluster, create an ACR, build and push the apps to the ACR, and deploy Istio (for testing, choose `yes` for all of them). Then run `./aks-test.sh`. It will output either `PASS`, `FAIL` or `SKIP`. Run `./clean.sh` to clean up the aks resources after.
 
