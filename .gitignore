@@ -1,0 +1,5 @@
+vendor/
+secret.yaml
+istio/istio-*/
+*.exe
+_.git/

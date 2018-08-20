@@ -1,0 +1,16 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: testwatch-service
+  labels:
+    app: testapp # label here is important - it's what we're watching for
+    type: watch-example
+spec:
+  type: ClusterIP
+  selector:
+    app: testwatch
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 3000

@@ -1,0 +1,29 @@
+# Default values for watch-examples-charts
+
+image:
+    registry: 
+    name: testwatch
+    tag: 
+    imagePullPolicy: Never # Set to Never or IfNotPresent if building directly onto Minikube, set to Always if on AKS and using tag that's not "latest"
+    imagePullSecret: 
+
+type: watch-example
+version: v1
+
+# resources:
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #  cpu: 500m
+  #  memory: 256Mi
+  # requests:
+  #  cpu: 500m
+  #  memory: 256Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

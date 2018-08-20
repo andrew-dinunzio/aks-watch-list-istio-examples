@@ -1,0 +1,17 @@
+package: github.com/andrew-dinunzio/watch-examples/testwatch
+import:
+- package: k8s.io/api
+  version: 73d903622b7391f3312dcbac6483fed484e185f8
+  subpackages:
+  - core/v1
+- package: k8s.io/apimachinery
+  version: 302974c03f7e50f16561ba237db776ab93594ef6
+  subpackages:
+  - pkg/apis/meta/v1
+  - pkg/labels
+- package: k8s.io/client-go
+  version: ~7.0.0
+  subpackages:
+  - kubernetes
+  - rest
+  - tools/cache

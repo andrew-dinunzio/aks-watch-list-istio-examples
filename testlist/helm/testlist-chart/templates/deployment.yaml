@@ -1,0 +1,31 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: {{ .Values.image.name }}-deploy
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ .Values.image.name }}
+    version: {{ .Values.version }}
+    type: {{ .Values.type }}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.image.name }}
+#      annotations:
+#        sidecar.istio.io/inject: "false"
+    spec:
+      serviceAccountName: {{ .Values.image.name }}
+      {{- if (.Values.image.registry) and (.Values.image.imagePullSecret) }}
+      imagePullSecrets:
+      - name: {{ .Values.image.imagePullSecret }}
+      {{- end }}
+      containers:
+      - name: {{ .Values.image.name }}
+        image: {{ include "testlist-chart.image" . }}
+        imagePullPolicy: {{ .Values.image.imagePullPolicy }}
+        ports:
+          - name: {{ .Values.image.portName }}
+            containerPort: {{ .Values.image.port }}
+            protocol: TCP

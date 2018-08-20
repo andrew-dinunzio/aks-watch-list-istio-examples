@@ -1,0 +1,13 @@
+package: andrewdinunzio.me/watch-examples/testlist
+import:
+- package: github.com/gorilla/mux
+  version: ~1.6.2
+- package: k8s.io/apimachinery
+  version: 302974c03f7e50f16561ba237db776ab93594ef6
+  subpackages:
+  - pkg/apis/meta/v1
+- package: k8s.io/client-go
+  version: ~7.0.0
+  subpackages:
+  - kubernetes
+  - rest
