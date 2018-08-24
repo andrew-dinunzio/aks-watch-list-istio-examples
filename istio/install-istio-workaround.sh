@@ -85,10 +85,17 @@ done
 #  Do the Helm Install for Istio here
 # -----------------------------------------------------------------------------
 # kubectl create -f install/kubernetes/helm/helm-service-account.yaml
-# helm init --service-account tiller --wait
-if [ "$ISTIO_VERSION" != "0.8.0" ]; then
-    kubectl apply -f install/kubernetes/helm/istio/templates/crds.yaml # necessary as of 1.0.0
-fi
+# # helm init --service-account tiller --wait
+# helmVersion=$(helm version --short --client | grep -o v[0-9][0-9]*.[0-9][0-9]*)
+# helmVersion=${helmVersion:1}
+# IFS='.'; arr=($helmVersion); unset IFS;
+# helmVersionMajor=${arr[0]}
+# helmVersionMinor=${arr[1]}
+# helmFix=[ "$helmVersionMajor" -lt 2 ] || 
+
+# if [ "$ISTIO_VERSION" != "0.8.0" ]; then # only needed if helm version is < 2.10
+#     kubectl apply -f install/kubernetes/helm/istio/templates/crds.yaml # necessary as of 1.0.0
+# fi
 helm install install/kubernetes/helm/istio --name istio --namespace istio-system --timeout 1800
 
 # -----------------------------------------------------------------------------
@@ -103,4 +110,6 @@ echo "Deleting all pods to inject them with Istio sidecars..."
 kubectl delete pods --all
 
 echo "Applying gateway..."
-kubectl apply -f ../gateway.yaml
+kubectl apply -f ../../gateway.yaml
+echo "Applying apiserver DestinationRule..."
+kubectl apply -f ../../apiserver-destinationrule.yaml
