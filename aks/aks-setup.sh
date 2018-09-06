@@ -66,7 +66,7 @@ fi
 if [ "$deployIstio" = "y" ]; then
     # install Istio
     pushd ../istio
-    ./install-istio-workaround.sh
+    ./install-istio.sh
     popd
 fi
 

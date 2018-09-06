@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export ISTIO_VERSION="0.8.0"
+export ISTIO_VERSION="1.0.1"
 
 ISTIO="istio-${ISTIO_VERSION}"
 if [ ! -d "${ISTIO}" ]; then
@@ -23,9 +23,9 @@ fi
 # -----------------------------------------------------------------------------
 # kubectl create -f install/kubernetes/helm/helm-service-account.yaml
 # helm init --service-account tiller --wait
-if [ "$ISTIO_VERSION" != "0.8.0" ]; then
-    kubectl apply -f install/kubernetes/helm/istio/templates/crds.yaml # necessary as of 1.0.0
-fi
+# if [ "$ISTIO_VERSION" != "0.8.0" ]; then
+#     kubectl apply -f install/kubernetes/helm/istio/templates/crds.yaml # necessary as of 1.0.0
+# fi
 helm install install/kubernetes/helm/istio --name istio --namespace istio-system --timeout 1800
 
 echo "Labeling default namespace for automatic Istio sidecar injection..."
@@ -34,4 +34,4 @@ echo "Deleting all pods to inject them with Istio sidecars..."
 kubectl delete pods --all
 
 echo "Applying gateway..."
-kubectl apply -f ../gateway.yaml
+kubectl apply -f ../../gateway.yaml
